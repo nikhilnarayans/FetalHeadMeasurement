@@ -22,6 +22,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CSP.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CSPforHeadSeg.py" />
     <Compile Include="EllipsePackage.py">
       <SubType>Code</SubType>

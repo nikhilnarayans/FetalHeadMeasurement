@@ -1,3 +1,7 @@
+#--------------------------------------------------------------------------------------------------------------------
+# Codes obtained from: http://nicky.vanforeest.com/misc/fitEllipse/fitEllipse.html
+#--------------------------------------------------------------------------------------------------------------------
+
 import numpy as np
 from numpy.linalg import eig, inv
 
@@ -20,11 +24,9 @@ def ellipse_center(a):
     y0=(a*f-b*d)/num
     return np.array([x0,y0])
 
-
 def ellipse_angle_of_rotation( a ):
     b,c,d,f,g,a = a[1]/2, a[2], a[3]/2, a[4]/2, a[5], a[0]
     return 0.5*np.arctan(2*b/(a-c))
-
 
 def ellipse_axis_length( a ):
     b,c,d,f,g,a = a[1]/2, a[2], a[3]/2, a[4]/2, a[5], a[0]

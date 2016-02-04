@@ -4,6 +4,7 @@ import numpy as np
 from cv2 import linearPolar, WARP_FILL_OUTLIERS, WARP_INVERSE_MAP
 from numpy import Inf
 from EllipsePackage import *
+from CSP import *
 
 pInputImage = io.imread("F:\ISBI_Challenge\FetalHeadSeg\head4.jpg",as_grey=True)
 
@@ -16,16 +17,14 @@ pTransformImg = linearPolar(pInputImage,(nX/2,nY/2),nMaxRadius, flags=WARP_FILL_
 
 pTransformImg = pTransformImg.T
 
-
-[pOut,pIdx] = graph.shortest_path(pTransformImg[95:200,:],output_indexlist=True)
-
-nEl = np.size(pOut,0)
-for i in pOut: 
-    pTransformImg[i] = 0.9 
+pTransformImg = CSP(pTransformImg)
 
 pTransformImg = linearPolar(pTransformImg.T,(nX/2,nY/2),nMaxRadius, flags=WARP_INVERSE_MAP)
 
-pPoints = np.argwhere(pTransformImg==0.9)
+io.imshow(pTransformImg)
+io.show()
+
+pPoints = np.argwhere(pTransformImg==1.0)
 
 a = fitEllipse(pPoints[:,0],pPoints[:,1])
 center = ellipse_center(a)
@@ -35,6 +34,3 @@ axes = ellipse_axis_length(a)
 print("center = ",  center)
 print("angle of rotation = ",  phi)
 print("axes = ", axes)
-
-io.imshow(pTransformImg)
-io.show()
