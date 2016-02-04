@@ -1,5 +1,5 @@
-#--------------------------------------------------------------------------------------------------------------------
-# Codes obtained from: http://nicky.vanforeest.com/misc/fitEllipse/fitEllipse.html
+﻿#--------------------------------------------------------------------------------------------------------------------
+# Code obtained from: http://nicky.vanforeest.com/misc/fitEllipse/fitEllipse.html
 #--------------------------------------------------------------------------------------------------------------------
 
 import numpy as np
@@ -33,8 +33,8 @@ def ellipse_axis_length( a ):
     up = 2*(a*f*f+c*d*d+g*b*b-2*b*d*f-a*c*g)
     down1=(b*b-a*c)*( (c-a)*np.sqrt(1+4*b*b/((a-c)*(a-c)))-(c+a))
     down2=(b*b-a*c)*( (a-c)*np.sqrt(1+4*b*b/((a-c)*(a-c)))-(c+a))
-    res1=np.sqrt(up/down1)
-    res2=np.sqrt(up/down2)
+    res1=np.sqrt(up/(np.abs(down1)+np.spacing(1)))
+    res2=np.sqrt(up/(np.abs(down2)+np.spacing(1)))
     return np.array([res1, res2])
 
 def ellipse_angle_of_rotation2( a ):
